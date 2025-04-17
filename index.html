@@ -66,16 +66,51 @@
     <a href="https://t.me/ateliertishkov" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-5 rounded-xl transition">Telegram</a>
     <a href="https://wa.me/79933136665" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-5 rounded-xl transition">WhatsApp</a>
   </div>
-  <form action="https://formsubmit.co/tishkovandrey13666@gmail.com" method="POST" class="space-y-4">
-  <input type="text" name="name" placeholder="Ваше имя" required class="w-full p-3 rounded-lg bg-gray-800 text-white">
-  <input type="email" name="email" placeholder="Ваш email" required class="w-full p-3 rounded-lg bg-gray-800 text-white">
-  <textarea name="message" placeholder="Сообщение" rows="5" required class="w-full p-3 rounded-lg bg-gray-800 text-white"></textarea>
-  <input type="hidden" name="_captcha" value="false">
-  <button type="submit" class="bg-bronze hover:bg-opacity-80 py-3 px-6 rounded-xl text-white font-semibold">Отправить</button>
-</form>
-  </form>
-</div>
+  <!-- Обратная связь -->
+<section class="bg-gray-900 text-white py-16 px-4">
+  <div class="max-w-2xl mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-[#b08d57] mb-6">Связаться с нами</h2>
+    <p class="text-gray-300 mb-8">Оставьте сообщение — мы ответим в ближайшее время</p>
 
-  </footer>
-</body>
-</html>
+    <!-- EmailJS библиотека -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+      (function() {
+        emailjs.init("u1peJAMIu4xMDypCB");
+      })();
+    </script>
+
+    <!-- Форма -->
+    <form id="contact-form" class="space-y-4">
+      <input type="text" name="name" placeholder="Ваше имя" required class="w-full p-3 rounded bg-gray-800 text-white" />
+      <input type="email" name="email" placeholder="Ваш email" required class="w-full p-3 rounded bg-gray-800 text-white" />
+      <textarea name="message" placeholder="Сообщение" rows="5" required class="w-full p-3 rounded bg-gray-800 text-white"></textarea>
+      <button type="submit" class="bg-[#b08d57] hover:opacity-90 py-3 px-6 rounded-xl text-white font-semibold transition">Отправить</button>
+    </form>
+
+    <!-- JS обработка -->
+    <script>
+      document.getElementById("contact-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        emailjs.sendForm("service_x2802ok", "template_6nsa9e7", this)
+          .then(() => {
+            alert("Сообщение успешно отправлено!");
+            window.location.href = "#thankyou";
+            this.reset();
+          }, (error) => {
+            alert("Ошибка при отправке: " + error.text);
+          });
+      });
+    </script>
+  </div>
+</section>
+
+<!-- Спасибо за сообщение -->
+<section id="thankyou" class="bg-white text-center py-20 px-4">
+  <div class="max-w-xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Спасибо за сообщение!</h2>
+    <p class="text-gray-600 mb-6">Мы свяжемся с вами в ближайшее время.</p>
+    <a href="#home" class="inline-block bg-[#b08d57] text-white py-3 px-6 rounded-xl font-semibold hover:opacity-90 transition">Вернуться на главную</a>
+  </div>
+</section>
